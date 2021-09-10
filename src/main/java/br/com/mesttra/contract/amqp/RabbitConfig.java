@@ -1,5 +1,6 @@
 package br.com.mesttra.contract.amqp;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -110,7 +111,8 @@ public class RabbitConfig {
 
     @Bean
     public Jackson2JsonMessageConverter producerJackson2MessageConverter() {
-        return new Jackson2JsonMessageConverter();
+        ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
+        return new Jackson2JsonMessageConverter(objectMapper);
     }
 
 

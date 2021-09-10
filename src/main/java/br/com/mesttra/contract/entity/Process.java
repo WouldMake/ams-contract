@@ -1,10 +1,7 @@
 package br.com.mesttra.contract.entity;
 
 import br.com.mesttra.contract.enums.Status;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +9,8 @@ import javax.persistence.*;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class Process {
 
     @Id
@@ -19,6 +18,7 @@ public class Process {
     private Long id;
 
     @NonNull
+    @Enumerated(EnumType.STRING)
     private Status state;
 
     @Lob
@@ -26,6 +26,7 @@ public class Process {
     private String payload;
 
     @NonNull
+    @Column(unique = true)
     private String correlationId;
 
 }
